@@ -10,6 +10,10 @@ import { UserContext } from "~/context/UserContext";
 const useStyles = makeStyles({
   logoContainer: {
     cursor: "pointer",
+    width: 180,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
   },
   logo: {
     height: 36,
@@ -43,7 +47,7 @@ const Header = () => {
         <Grid container direction="row" justify="space-between" alignItems="center">
           <Grid container item direction="row" xs={10}>
             <Link href="/">
-              <Box display="flex" flexDirection="row" alignItems="center" className={classes.logoContainer}>
+              <Box display="flex" className={classes.logoContainer}>
                 <img className={classes.logo} src="/images/uPennLogo.svg" alt="UPenn Logo" />
                 <Typography variant="h6" className={classes.title}>
                   MCIT Central
