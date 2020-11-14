@@ -44,7 +44,7 @@ const Header = () => {
           <Grid container item direction="row" xs={10}>
             <Link href="/">
               <Box display="flex" flexDirection="row" alignItems="center" className={classes.logoContainer}>
-                <img className={classes.logo} src="/images/uPennLogo.svg" layout="fill" alt="UPenn Logo" />
+                <img className={classes.logo} src="/images/uPennLogo.svg" alt="UPenn Logo" />
                 <Typography variant="h6" className={classes.title}>
                   MCIT Central
                 </Typography>

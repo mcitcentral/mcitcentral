@@ -25,13 +25,13 @@ const useStyles = makeStyles({
 });
 
 interface CourseReviewFormProps {
-  edit: boolean;
+  edit?: boolean;
   courses: CourseList;
   reviewForm: useReviewForm;
   handleSubmit: () => void;
 }
 
-const CourseReviewForm = ({ courses, reviewForm, edit, handleSubmit }: CourseReviewFormProps) => {
+const CourseReviewForm = ({ courses, reviewForm, handleSubmit, edit = false }: CourseReviewFormProps) => {
   const classes = useStyles();
   const { review, errors, updateReview } = reviewForm;
 
