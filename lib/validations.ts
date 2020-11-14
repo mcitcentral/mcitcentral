@@ -4,6 +4,10 @@ export const isCoreCourse = (course: Course): boolean => {
   return false;
 };
 
+export const isElective = (course: Course): boolean => {
+  return !isCoreCourse(course);
+};
+
 export const hasKeyword = (course: Course, keyword: string): boolean => {
   if (course.id.toLowerCase().includes(keyword.toLowerCase())) return true;
   if (course.name.toLowerCase().includes(keyword.toLowerCase())) return true;

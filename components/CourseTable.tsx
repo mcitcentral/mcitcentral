@@ -19,7 +19,7 @@ import {
 
 import useToggle from "~/hooks/useToggle";
 import AddCourseDialog from "~/components/AddCourseDialog";
-import { isCoreCourse, hasKeyword, hasReviews } from "~/lib/validations";
+import { isCoreCourse, isElective, hasKeyword, hasReviews } from "~/lib/validations";
 
 const useStyles = makeStyles({
   table: {
@@ -42,13 +42,15 @@ const CourseTable = ({ courses, editable = false }: CourseTableProps) => {
   const classes = useStyles();
   const [addCourseActive, toggleAddCourse] = useToggle();
   const [filterString, setFilterString] = useState<string>("");
-  const [filterCoreCourses, setFilterCoreCourses] = useState<boolean>(false);
+  const [filterCoreCourses, setFilterCoreCourses] = useState<boolean>(true);
+  const [filterElectives, setFilterElectives] = useState<boolean>(true);
   const [filterHasReviews, setFilterHasReviews] = useState<boolean>(false);
 
   const filteredCourses = Object.values(courses).filter((course) => {
     if (
       hasKeyword(course, filterString) &&
-      (isCoreCourse(course) || !filterCoreCourses) &&
+      (isElective(course) || filterCoreCourses) &&
+      (isCoreCourse(course) || filterElectives) &&
       (hasReviews(course) || !filterHasReviews)
     )
       return course;
@@ -66,6 +68,10 @@ const CourseTable = ({ courses, editable = false }: CourseTableProps) => {
                   <Switch checked={filterCoreCourses} onChange={(e) => setFilterCoreCourses(e.target.checked)} />
                 }
                 label="Core Courses"
+              />
+              <FormControlLabel
+                control={<Switch checked={filterElectives} onChange={(e) => setFilterElectives(e.target.checked)} />}
+                label="Electives"
               />
               <FormControlLabel
                 control={<Switch checked={filterHasReviews} onChange={(e) => setFilterHasReviews(e.target.checked)} />}
