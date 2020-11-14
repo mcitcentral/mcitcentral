@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "mcit-central-staging",
+    "production": "mcit-central-prod"
+  }
+}
