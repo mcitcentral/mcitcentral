@@ -37,7 +37,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = Object.keys(courses).map((courseId) => ({ params: { courseId } }));
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 };
 
