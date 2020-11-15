@@ -1,4 +1,4 @@
-import { Dispatch } from "react";
+import { useContext, Dispatch } from "react";
 import {
   Dialog,
   DialogActions,
@@ -9,13 +9,32 @@ import {
   Typography,
 } from "@material-ui/core";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import { useRouter } from "next/router";
+
+import firebaseAuth from "~/lib/firebaseAuth";
+import apiClient from "~/lib/apiClient";
+import { NotificationContext } from "~/context/NotificationContext";
 
 interface DeleteReviewDialogProps {
   open: boolean;
   setOpen: Dispatch<boolean>;
+  courseReviewId: string;
 }
 
-const DeleteReviewDialog = ({ open, setOpen }: DeleteReviewDialogProps) => {
+const DeleteReviewDialog = ({ open, courseReviewId, setOpen }: DeleteReviewDialogProps) => {
+  const { setNotification } = useContext(NotificationContext);
+  const router = useRouter();
+
+  const handleSubmit = async () => {
+    const firebaseToken = await firebaseAuth.getToken();
+    const response = await apiClient.deleteReview(firebaseToken, courseReviewId);
+    if (response.success) {
+      setNotification({ type: "success", message: "Your review has been deleted." });
+      setOpen(false);
+      router.push("/user/reviews");
+    } else setNotification({ type: "error", message: "There was an error deleting your review." });
+  };
+
   return (
     <Dialog open={open}>
       <DialogTitle disableTypography style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
@@ -29,7 +48,7 @@ const DeleteReviewDialog = ({ open, setOpen }: DeleteReviewDialogProps) => {
         <Button onClick={() => setOpen(false)} color="primary">
           Cancel
         </Button>
-        <Button onClick={() => {}} color="primary" autoFocus>
+        <Button onClick={handleSubmit} color="primary" autoFocus>
           Confirm
         </Button>
       </DialogActions>

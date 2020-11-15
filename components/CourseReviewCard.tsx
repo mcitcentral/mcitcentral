@@ -92,7 +92,7 @@ const CourseReviewCard = ({ course, courseReview, courseReviewId, editable = fal
   };
   return (
     <>
-      <DeleteReviewDialog open={isDeleteActive} setOpen={setDeleteActive} />
+      <DeleteReviewDialog open={isDeleteActive} setOpen={setDeleteActive} courseReviewId={courseReviewId} />
       <Card className={classes.card}>
         <CardHeader
           avatar={
