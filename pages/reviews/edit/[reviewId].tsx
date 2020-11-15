@@ -1,9 +1,10 @@
 import { Container } from "@material-ui/core";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import CourseReviewForm from "~/components/CourseReviewForm";
+import { NotificationContext } from "~/context/NotificationContext";
 import useReviewForm from "~/hooks/useReviewForm";
 import apiClient from "~/lib/apiClient";
 import firebaseAuth from "~/lib/firebaseAuth";
@@ -13,6 +14,7 @@ import verifyCookie from "~/services/verifyCookie";
 
 const EditReview = ({ courses, courseReview, reviewId }) => {
   const reviewForm = useReviewForm(courseReview);
+  const { setNotification } = useContext(NotificationContext);
   const { review, validateReview, updateErrors } = reviewForm;
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const router = useRouter();
@@ -26,8 +28,10 @@ const EditReview = ({ courses, courseReview, reviewId }) => {
     if (validateReview()) return;
     const firebaseToken = await firebaseAuth.getToken();
     const res = await apiClient.editReview(firebaseToken, reviewId, review);
-    if (res.success) router.push("/reviews");
-    else updateErrors({ message: res.message });
+    if (res.success) {
+      setNotification({ type: "success", message: "Your review has been edited." });
+      router.push("/user/reviews");
+    } else updateErrors({ message: res.message });
   };
 
   return (

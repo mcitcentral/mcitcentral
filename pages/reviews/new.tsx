@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { Container } from "@material-ui/core";
@@ -9,6 +9,7 @@ import getAllCourses from "~/services/getAllCourses";
 import useReviewForm from "~/hooks/useReviewForm";
 import CourseReviewForm from "~/components/CourseReviewForm";
 import verifyCookie from "~/services/verifyCookie";
+import { NotificationContext } from "~/context/NotificationContext";
 
 interface CreateReviewProps {
   courses: CourseList;
@@ -16,6 +17,7 @@ interface CreateReviewProps {
 
 const CreateReview = ({ courses }: CreateReviewProps) => {
   const reviewForm = useReviewForm();
+  const { setNotification } = useContext(NotificationContext);
   const { review, validateReview, updateErrors } = reviewForm;
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const router = useRouter();
@@ -29,8 +31,10 @@ const CreateReview = ({ courses }: CreateReviewProps) => {
     if (validateReview()) return;
     const firebaseToken = await firebaseAuth.getToken();
     const res = await apiClient.createReview(firebaseToken, review);
-    if (res.success) router.push("/reviews");
-    else updateErrors({ message: res.message });
+    if (res.success) {
+      setNotification({ type: "success", message: "Your review has been created." });
+      router.push("/user/reviews");
+    } else updateErrors({ message: res.message });
   };
 
   return (
