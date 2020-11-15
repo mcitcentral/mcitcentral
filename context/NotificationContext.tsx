@@ -1,29 +1,26 @@
-import { useState, createContext } from "react";
+import { useState, createContext, Dispatch } from "react";
 import Alert from "@material-ui/lab/Alert";
 import { Snackbar } from "@material-ui/core";
 
 interface NotificationContext {
-  createNotification: (notification: Notification) => void;
+  setNotification: Dispatch<NotificationMessage | null>;
 }
 
 export const NotificationContext = createContext<NotificationContext>({} as NotificationContext);
 
-const NotificationLayout = ({ children }) => {
-  const [notification, setNotification] = useState<Notification | null>(null);
-  const createNotification = (notification: Notification) => {};
-
+export const NotificationLayout = ({ children }) => {
+  const [notification, setNotification] = useState<NotificationMessage | null>(null);
   const handleClose = () => setNotification(null);
-
   return (
-    <NotificationContext.Provider value={{ createNotification }}>
-      <Snackbar open={!!notification} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity={notification.type}>
-          {notification.message}
-        </Alert>
+    <NotificationContext.Provider value={{ setNotification }}>
+      <Snackbar open={!!notification} autoHideDuration={2500} onClose={handleClose}>
+        {notification && (
+          <Alert onClose={handleClose} severity={notification.type}>
+            {notification.message}
+          </Alert>
+        )}
       </Snackbar>
       {children}
     </NotificationContext.Provider>
   );
 };
-
-export default NotificationLayout;

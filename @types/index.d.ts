@@ -56,7 +56,7 @@ interface useReviewForm {
   updateErrors: (modification: { [key: string]: any }) => void;
 }
 
-interface Notification {
+interface NotificationMessage {
   message: string;
   type: "success" | "error" | "warning" | "info";
 }

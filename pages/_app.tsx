@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { UserLayout } from "~/context/UserContext";
 import { ThemeLayout } from "~/context/ThemeContext";
+import { NotificationLayout } from "~/context/NotificationContext";
 import Header from "~/components/Header";
 import ActionMenu from "~/components/ActionMenu";
 
@@ -34,13 +35,15 @@ const App = ({ Component, pageProps }: AppProps) => {
       </Head>
       <ThemeLayout>
         <UserLayout>
-          <Box className={classes.container}>
-            <Header />
-            <Container>
-              <Component {...pageProps} />
-            </Container>
-            <ActionMenu />
-          </Box>
+          <NotificationLayout>
+            <Box className={classes.container}>
+              <Header />
+              <Container>
+                <Component {...pageProps} />
+              </Container>
+              <ActionMenu />
+            </Box>
+          </NotificationLayout>
         </UserLayout>
       </ThemeLayout>
     </>
