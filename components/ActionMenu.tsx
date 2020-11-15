@@ -4,7 +4,8 @@ import { makeStyles } from "@material-ui/core";
 import { SpeedDial, SpeedDialAction } from "@material-ui/lab";
 import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
-import BugReportIcon from "@material-ui/icons/BugReport";
+// import BugReportIcon from "@material-ui/icons/BugReport";
+import EmailIcon from "@material-ui/icons/Email";
 
 import { UserContext } from "~/context/UserContext";
 
@@ -37,7 +38,12 @@ const ActionMenu = () => {
       {user && (
         <SpeedDialAction icon={<EditIcon />} tooltipTitle="Create Review" onClick={() => router.push("/reviews/new")} />
       )}
-      <SpeedDialAction icon={<BugReportIcon />} tooltipTitle="Report Bug" />
+      {/* <SpeedDialAction icon={<BugReportIcon />} tooltipTitle="Report Bug" /> */}
+      <SpeedDialAction
+        icon={<EmailIcon />}
+        tooltipTitle="Contact Us"
+        onClick={() => (location.href = "mailto:wplau@seas.upenn.edu")}
+      />
     </SpeedDial>
   );
 };
