@@ -1,8 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## About this Project
+
+This is the repository for [mcitcentral.com](www.mcitcentral.com), a site for the students of the MCIT Program at the University of Pennsylvania. We welcome feedback, suggestions and contributions from everyone from the student community.
+
+This project uses the following technologies:
+
+- React / Next.js
+- Firebase
+- Typescript
+- Material UI
 
 ## Getting Started
 
-First, run the development server:
+First, install all dependencies.
+
+```bash
+npm ci
+# or
+yarn
+```
+
+To run the development server:
 
 ```bash
 npm run dev
@@ -10,21 +27,18 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Please refer to the `.env.example` file the environment variables nececesary.
 
-## Learn More
+The environment variables prefixed with `NEXT_PUBLIC_FIREBASE` correspond with each of the keys in your firebase configuration.
 
-To learn more about Next.js, take a look at the following resources:
+In order to generate the Base64 string for `GOOGLE_APPLICATION_CREDENTIALS_BASE64` from a `service-key.json` file provided by Google, please run this in your console:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+base64 service-key.json
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Acknowledgements
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- This project is heavily inspired by [OMSCentral](https://omscentral.com/courses), which is also open source and maintained at [https://github.com/OMSCentral](https://github.com/OMSCentral).
