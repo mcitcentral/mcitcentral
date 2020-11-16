@@ -10,6 +10,11 @@ const firebaseAuth = {
       .signInWithPopup(provider)
       .then((res) => {
         const token = res.credential;
+        if (res.additionalUserInfo.isNewUser) {
+          firebase.analytics().logEvent("sign_up", { email: res.user.email });
+        } else {
+          firebase.analytics().logEvent("login", { email: res.user.email });
+        }
       });
   },
   handleLogout: async () => {
