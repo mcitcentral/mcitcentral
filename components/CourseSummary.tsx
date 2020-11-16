@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   },
 });
 
-const CourseSummary = ({ course }: CourseSummaryProps) => {
+const CourseSummary: React.FC<CourseSummaryProps> = ({ course }) => {
   const styles = useStyles();
   const sections = [
     { label: "Reviews", key: "reviewCount" },

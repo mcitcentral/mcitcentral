@@ -10,7 +10,7 @@ interface AllReviewsProps {
   courseReviews: CourseReviewList;
 }
 
-const AllReviews = ({ courses, courseReviews }: AllReviewsProps) => {
+const AllReviews: React.FC<AllReviewsProps> = ({ courses, courseReviews }) => {
   return (
     <Container maxWidth="md">
       <CourseReviewCardList courses={courses} courseReviews={courseReviews} />
@@ -18,7 +18,7 @@ const AllReviews = ({ courses, courseReviews }: AllReviewsProps) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async () => {
   const courses = await getAllCourses();
   const courseReviews = await getAllCourseReviews();
   return {

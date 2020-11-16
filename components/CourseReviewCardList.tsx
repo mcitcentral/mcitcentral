@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-const CourseReviewCardList = ({ courses, courseReviews, editable = false }: CourseReviewCardListProps) => {
+const CourseReviewCardList: React.FC<CourseReviewCardListProps> = ({ courses, courseReviews, editable = false }) => {
   const classes = useStyles();
   return (
     <div className={classes.grid}>

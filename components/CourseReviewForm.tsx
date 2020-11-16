@@ -31,7 +31,7 @@ interface CourseReviewFormProps {
   handleSubmit: () => void;
 }
 
-const CourseReviewForm = ({ courses, reviewForm, handleSubmit, edit = false }: CourseReviewFormProps) => {
+const CourseReviewForm: React.FC<CourseReviewFormProps> = ({ courses, reviewForm, handleSubmit, edit = false }) => {
   const classes = useStyles();
   const { review, errors, updateReview } = reviewForm;
 

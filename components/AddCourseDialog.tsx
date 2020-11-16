@@ -30,7 +30,7 @@ interface AddCourseDialogProps {
   open: boolean;
   toggleDialog: () => void;
 }
-const AddCourseDialog = ({ open, toggleDialog }: AddCourseDialogProps) => {
+const AddCourseDialog: React.FC<AddCourseDialogProps> = ({ open, toggleDialog }) => {
   const classes = useStyles();
   const [id, setId] = useState<string>("");
   const [name, setName] = useState<string>("");

@@ -10,7 +10,7 @@ interface IndexProps {
   courses: CourseList;
 }
 
-const Index = ({ courses }: IndexProps) => {
+const Index: React.FC<IndexProps> = ({ courses }) => {
   const { userSettings } = useContext(UserContext);
   return (
     <Container maxWidth="lg">

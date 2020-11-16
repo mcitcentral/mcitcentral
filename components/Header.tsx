@@ -24,7 +24,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Header = () => {
+const Header: React.FC = () => {
   const classes = useStyles();
   const { user, logout } = useContext(UserContext);
   const [isMenuActive, setMenuActive] = useState(false);

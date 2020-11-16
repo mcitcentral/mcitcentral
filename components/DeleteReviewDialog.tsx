@@ -21,7 +21,7 @@ interface DeleteReviewDialogProps {
   courseReviewId: string;
 }
 
-const DeleteReviewDialog = ({ open, courseReviewId, setOpen }: DeleteReviewDialogProps) => {
+const DeleteReviewDialog: React.FC<DeleteReviewDialogProps> = ({ open, courseReviewId, setOpen }) => {
   const { setNotification } = useContext(NotificationContext);
   const router = useRouter();
 

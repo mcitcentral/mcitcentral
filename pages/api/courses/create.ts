@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import firebaseAdmin from "~/lib/firebaseAdmin";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
   try {
     const { firebaseToken, course } = req.body as CreateCourseRequest;
     const { uid } = await firebaseAdmin.auth().verifyIdToken(firebaseToken);

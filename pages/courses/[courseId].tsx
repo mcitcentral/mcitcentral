@@ -14,7 +14,7 @@ interface CourseReviewsProps {
   courseReviews: CourseReviewList;
 }
 
-const CourseReviews = ({ course, courseReviews }: CourseReviewsProps) => {
+const CourseReviews: React.FC<CourseReviewsProps> = ({ course, courseReviews }) => {
   const courseList: CourseList = { [course.id]: course };
 
   return (

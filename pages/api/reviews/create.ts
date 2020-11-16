@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import firebaseAdmin from "~/lib/firebaseAdmin";
 import findDuplicateReview from "~/services/findDuplicateReview";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
   try {
     const { firebaseToken, review } = req.body as CreateReviewRequest;
     const { uid } = await firebaseAdmin.auth().verifyIdToken(firebaseToken);

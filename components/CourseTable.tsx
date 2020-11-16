@@ -38,7 +38,7 @@ interface CourseTableProps {
   editable?: boolean;
 }
 
-const CourseTable = ({ courses, editable = false }: CourseTableProps) => {
+const CourseTable: React.FC<CourseTableProps> = ({ courses, editable = false }) => {
   const classes = useStyles();
   const [addCourseActive, toggleAddCourse] = useToggle();
   const [filterString, setFilterString] = useState<string>("");

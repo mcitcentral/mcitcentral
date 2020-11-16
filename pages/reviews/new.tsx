@@ -15,7 +15,7 @@ interface CreateReviewProps {
   courses: CourseList;
 }
 
-const CreateReview = ({ courses }: CreateReviewProps) => {
+const CreateReview: React.FC<CreateReviewProps> = ({ courses }) => {
   const reviewForm = useReviewForm();
   const { setNotification } = useContext(NotificationContext);
   const { review, validateReview, updateErrors } = reviewForm;

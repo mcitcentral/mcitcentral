@@ -53,7 +53,7 @@ interface useReviewForm {
   errors: { [key: string]: boolean };
   validateReview: () => boolean;
   updateReview: (modification: Partial<Review>) => void;
-  updateErrors: (modification: { [key: string]: any }) => void;
+  updateErrors: (modification: { [key: string]: boolean | string }) => void;
 }
 
 interface NotificationMessage {

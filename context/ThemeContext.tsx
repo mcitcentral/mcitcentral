@@ -23,6 +23,6 @@ export const theme = createMuiTheme({
   },
 });
 
-export const ThemeLayout = ({ children }) => {
+export const ThemeLayout: React.FC = ({ children }) => {
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };

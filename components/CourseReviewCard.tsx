@@ -56,7 +56,12 @@ const useStyles = makeStyles({
   },
 });
 
-const CourseReviewCard = ({ course, courseReview, courseReviewId, editable = false }: CourseReviewCardProps) => {
+const CourseReviewCard: React.FC<CourseReviewCardProps> = ({
+  course,
+  courseReview,
+  courseReviewId,
+  editable = false,
+}) => {
   const classes = useStyles();
   const [isMenuActive, setMenuActive] = useState<boolean>(false);
   const [isDeleteActive, setDeleteActive] = useState<boolean>(false);

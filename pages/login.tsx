@@ -2,7 +2,7 @@ import React from "react";
 import { Container, TextField, Typography } from "@material-ui/core";
 import { GetServerSideProps } from "next";
 
-const Login = () => {
+const Login: React.FC = () => {
   return (
     <Container>
       <Typography>Login</Typography>

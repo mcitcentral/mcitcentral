@@ -2,14 +2,13 @@ import firebase from "~/lib/firebase";
 import "firebase/auth";
 
 const firebaseAuth = {
-  handleGoogleLogin: async () => {
+  handleGoogleLogin: async (): Promise<void> => {
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.setCustomParameters({ hd: "seas.upenn.edu" });
     firebase
       .auth()
       .signInWithPopup(provider)
       .then((res) => {
-        const token = res.credential;
         if (res.additionalUserInfo.isNewUser) {
           firebase.analytics().logEvent("sign_up", { email: res.user.email });
         } else {
@@ -17,7 +16,7 @@ const firebaseAuth = {
         }
       });
   },
-  handleLogout: async () => {
+  handleLogout: async (): Promise<void> => {
     firebase.auth().signOut();
   },
   getToken: async (): Promise<string> => {

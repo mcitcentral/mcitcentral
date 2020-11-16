@@ -8,7 +8,7 @@ interface NotificationContext {
 
 export const NotificationContext = createContext<NotificationContext>({} as NotificationContext);
 
-export const NotificationLayout = ({ children }) => {
+export const NotificationLayout: React.FC = ({ children }) => {
   const [notification, setNotification] = useState<NotificationMessage | null>(null);
   const handleClose = () => setNotification(null);
   return (

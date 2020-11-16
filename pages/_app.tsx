@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-const App = ({ Component, pageProps }: AppProps) => {
+const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   useEffect(() => {
     const jssStyles = document.querySelector("#jss-server-side");
     if (jssStyles) jssStyles.parentElement.removeChild(jssStyles);

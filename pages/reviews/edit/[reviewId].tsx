@@ -12,7 +12,13 @@ import getAllCourses from "~/services/getAllCourses";
 import getSingleCourseReview from "~/services/getSingleCourseReview";
 import verifyCookie from "~/services/verifyCookie";
 
-const EditReview = ({ courses, courseReview, reviewId }) => {
+interface EditReviewProps {
+  courses: CourseList;
+  courseReview: CourseReview;
+  reviewId: string;
+}
+
+const EditReview: React.FC<EditReviewProps> = ({ courses, courseReview, reviewId }) => {
   const reviewForm = useReviewForm(courseReview);
   const { setNotification } = useContext(NotificationContext);
   const { review, validateReview, updateErrors } = reviewForm;

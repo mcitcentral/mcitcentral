@@ -11,7 +11,7 @@ interface UserReviewProps {
   courseReviews: CourseReviewList;
 }
 
-const UserReviews = ({ courses, courseReviews }: UserReviewProps) => {
+const UserReviews: React.FC<UserReviewProps> = ({ courses, courseReviews }) => {
   if (Object.keys(courseReviews).length < 1) {
     return <Typography>You don't have any reviews.</Typography>;
   }

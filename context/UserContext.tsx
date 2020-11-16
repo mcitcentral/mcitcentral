@@ -12,7 +12,7 @@ interface UserContext {
 
 export const UserContext = createContext<UserContext>({} as UserContext);
 
-export const UserLayout = ({ children }) => {
+export const UserLayout: React.FC = ({ children }) => {
   const [user, setUser] = useState<firebase.User | null>(null);
   const [userSettings, setUserSettings] = useState<UserSettings | null>(null);
   const router = useRouter();

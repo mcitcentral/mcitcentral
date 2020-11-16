@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ActionMenu = () => {
+const ActionMenu: React.FC = () => {
   const { user } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const classes = useStyles();
