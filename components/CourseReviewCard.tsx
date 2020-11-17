@@ -27,9 +27,25 @@ interface CourseReviewCardProps {
   editable?: boolean;
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   card: {
     padding: 16,
+  },
+  cardActions: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    [theme.breakpoints.down("xs")]: {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gridRowGap: 10,
+    },
+  },
+  semester: {
+    marginRight: "auto",
+    [theme.breakpoints.down("xs")]: {
+      marginRight: 0,
+    },
   },
   chipDarkGreen: {
     color: "#1b5e20",
@@ -54,7 +70,7 @@ const useStyles = makeStyles({
   avatar: {
     backgroundColor: blue[900],
   },
-});
+}));
 
 const CourseReviewCard: React.FC<CourseReviewCardProps> = ({
   course,
@@ -126,9 +142,8 @@ const CourseReviewCard: React.FC<CourseReviewCardProps> = ({
         <CardContent>
           <Typography>{courseReview.body}</Typography>
         </CardContent>
-        <CardActions>
-          <Chip label={courseReview.semester} variant="outlined" />
-          <span style={{ flexGrow: 1 }} />
+        <CardActions className={classes.cardActions}>
+          <Chip label={courseReview.semester} variant="outlined" className={classes.semester} />
           <Chip
             label={Difficulty[courseReview.difficulty]}
             variant="outlined"

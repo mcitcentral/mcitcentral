@@ -15,14 +15,17 @@ import EditIcon from "@material-ui/icons/Edit";
 
 import { Rating, Difficulty, Semesters } from "~/lib/maps";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   grid: {
     padding: 50,
     display: "grid",
     gridTemplateColumns: "1fr",
     gridRowGap: 25,
+    [theme.breakpoints.down("sm")]: {
+      padding: 25,
+    },
   },
-});
+}));
 
 interface CourseReviewFormProps {
   edit?: boolean;
