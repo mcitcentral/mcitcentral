@@ -9,6 +9,12 @@ const useStyles = makeStyles({
   gridItem: {
     padding: 16,
     borderColor: "#E5E5E5",
+    height: "100%",
+    boxSizing: "border-box",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 

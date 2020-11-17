@@ -30,6 +30,11 @@ const useStyles = makeStyles({
   },
   topContainer: {
     marginBottom: 25,
+    display: "flex",
+    alignItems: "flex-end",
+  },
+  tableContainer: {
+    overflow: "scroll",
   },
 });
 
@@ -92,41 +97,43 @@ const CourseTable: React.FC<CourseTableProps> = ({ courses, editable = false }) 
             )}
           </Grid>
         </Grid>
-        <Table className={classes.table}>
-          <TableHead>
-            <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell>Name</TableCell>
-              <TableCell>Reviews</TableCell>
-              <TableCell>Difficulty (1-5)</TableCell>
-              <TableCell>Workload (hrs/wk)</TableCell>
-              <TableCell>Rating (1-5)</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {filteredCourses.map(({ id, name, reviewCount, avgDifficulty, avgWorkload, avgRating }) => {
-              return (
-                <Link key={id} href={`/courses/${id}`}>
-                  <TableRow hover className={classes.tableRow}>
-                    <TableCell>{id}</TableCell>
-                    <TableCell>{name}</TableCell>
-                    <TableCell>{reviewCount}</TableCell>
-                    <TableCell>{Math.round(avgDifficulty * 100) / 100}</TableCell>
-                    <TableCell>{Math.round(avgWorkload * 100) / 100}</TableCell>
-                    <TableCell>{Math.round(avgRating * 100) / 100}</TableCell>
-                  </TableRow>
-                </Link>
-              );
-            })}
-            {filteredCourses.length === 0 && (
+        <Box className={classes.tableContainer}>
+          <Table className={classes.table}>
+            <TableHead>
               <TableRow>
-                <TableCell colSpan={6}>
-                  <Typography>No courses found</Typography>
-                </TableCell>
+                <TableCell style={{ minWidth: 80 }}>ID</TableCell>
+                <TableCell style={{ minWidth: 250 }}>Name</TableCell>
+                <TableCell align="center">Reviews</TableCell>
+                <TableCell align="center">Difficulty (1-5)</TableCell>
+                <TableCell align="center">Workload (hrs/wk)</TableCell>
+                <TableCell align="center">Rating (1-5)</TableCell>
               </TableRow>
-            )}
-          </TableBody>
-        </Table>
+            </TableHead>
+            <TableBody>
+              {filteredCourses.map(({ id, name, reviewCount, avgDifficulty, avgWorkload, avgRating }) => {
+                return (
+                  <Link key={id} href={`/courses/${id}`}>
+                    <TableRow hover className={classes.tableRow}>
+                      <TableCell>{id}</TableCell>
+                      <TableCell>{name}</TableCell>
+                      <TableCell align="center">{reviewCount}</TableCell>
+                      <TableCell align="center">{Math.round(avgDifficulty * 100) / 100}</TableCell>
+                      <TableCell align="center">{Math.round(avgWorkload * 100) / 100}</TableCell>
+                      <TableCell align="center">{Math.round(avgRating * 100) / 100}</TableCell>
+                    </TableRow>
+                  </Link>
+                );
+              })}
+              {filteredCourses.length === 0 && (
+                <TableRow>
+                  <TableCell colSpan={6}>
+                    <Typography>No courses found</Typography>
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </Box>
       </Box>
     </>
   );
