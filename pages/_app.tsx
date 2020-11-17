@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
-import { Container, Box } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { UserLayout } from "~/context/UserContext";
@@ -38,9 +38,9 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
           <NotificationLayout>
             <Box className={classes.container}>
               <Header />
-              <Container>
+              <Box>
                 <Component {...pageProps} />
-              </Container>
+              </Box>
               <ActionMenu />
             </Box>
           </NotificationLayout>

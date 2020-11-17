@@ -7,7 +7,7 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import firebaseAuth from "~/lib/firebaseAuth";
 import { UserContext } from "~/context/UserContext";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   logoContainer: {
     cursor: "pointer",
     width: 180,
@@ -22,7 +22,12 @@ const useStyles = makeStyles({
   title: {
     marginRight: 15,
   },
-});
+  buttons: {
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
+}));
 
 const Header: React.FC = () => {
   const classes = useStyles();
@@ -55,10 +60,10 @@ const Header: React.FC = () => {
               </Box>
             </Link>
             <Link href="/">
-              <Button>Courses</Button>
+              <Button className={classes.buttons}>Courses</Button>
             </Link>
             <Link href="/reviews">
-              <Button>Reviews</Button>
+              <Button className={classes.buttons}>Reviews</Button>
             </Link>
           </Grid>
           <Grid container item direction="row" xs={2} justify="flex-end">
