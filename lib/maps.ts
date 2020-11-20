@@ -14,4 +14,12 @@ export const Rating = {
   5: "Strongly Liked",
 };
 
-export const Semesters = ["Spring 2019", "Fall 2019", "Spring 2020", "Fall 2020", "Spring 2021"];
+export const Semesters = [
+  "Spring 2019",
+  "Summer 2019",
+  "Fall 2019",
+  "Spring 2020",
+  "Summer 2020",
+  "Fall 2020",
+  "Spring 2021",
+];
