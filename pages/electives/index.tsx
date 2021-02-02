@@ -35,11 +35,9 @@ const Electives: React.FC<ElectivesProps> = ({ initElectiveSuggestions }) => {
     <Container maxWidth="lg">
       <Grid container style={{ marginBottom: 15 }}>
         <Grid item container xs={12} justify="flex-end">
-          {userSettings?.isAdmin && (
-            <Button variant="contained" color="primary" onClick={toggleAddElective} style={{ marginLeft: 25 }}>
-              + Add Elective
-            </Button>
-          )}
+          <Button variant="contained" color="primary" onClick={toggleAddElective} style={{ marginLeft: 25 }}>
+            + Add Elective
+          </Button>
         </Grid>
       </Grid>
       <AddElectiveSuggestionDialog open={addElective} toggleDialog={toggleAddElective} />

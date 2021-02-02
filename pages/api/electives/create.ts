@@ -4,10 +4,7 @@ import firebaseAdmin from "~/lib/firebaseAdmin";
 export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
   try {
     const { firebaseToken, elective } = req.body as CreateElectiveRequest;
-    const { uid } = await firebaseAdmin.auth().verifyIdToken(firebaseToken);
-    const userSettingsRecord = await firebaseAdmin.firestore().collection("userSettings").doc(uid).get();
-    const userSettings = userSettingsRecord.data() as UserSettings;
-    if (!userSettings.isAdmin) throw new Error("Authentication failed.");
+    await firebaseAdmin.auth().verifyIdToken(firebaseToken);
     await firebaseAdmin
       .firestore()
       .collection("electiveSuggestions")
