@@ -42,16 +42,18 @@ interface ElectiveTableProps {
 const ElectiveTable: React.FC<ElectiveTableProps> = ({ uid, electiveSuggestions, handleVote }) => {
   const classes = useStyles();
 
-  const sortedElectiveArray = Object.values(electiveSuggestions).map((elective: ElectiveSuggestion) => {
-    const voteTotal = Object.values(elective.votes).reduce((acc, val) => {
-      if (val) return acc + 1;
-      else return acc;
-    }, 0);
-    return {
-      ...elective,
-      voteTotal,
-    };
-  });
+  const sortedElectiveArray = Object.values(electiveSuggestions)
+    .map((elective: ElectiveSuggestion) => {
+      const voteTotal = Object.values(elective.votes).reduce((acc, val) => {
+        if (val) return acc + 1;
+        else return acc;
+      }, 0);
+      return {
+        ...elective,
+        voteTotal,
+      };
+    })
+    .sort(({ voteTotal: a }, { voteTotal: b }) => b - a);
 
   return (
     <Box>
