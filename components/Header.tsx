@@ -65,6 +65,13 @@ const Header: React.FC = () => {
             <Link href="/reviews">
               <Button className={classes.buttons}>Reviews</Button>
             </Link>
+            {user && (
+              <>
+                <Link href="/electives">
+                  <Button className={classes.buttons}>Electives</Button>
+                </Link>
+              </>
+            )}
           </Grid>
           <Grid container item direction="row" xs={2} justify="flex-end">
             {user ? (
