@@ -10,8 +10,6 @@ import {
   Typography,
 } from "@material-ui/core";
 import ClassIcon from "@material-ui/icons/Class";
-import apiClient from "~/lib/apiClient";
-import firebaseAuth from "~/lib/firebaseAuth";
 
 const useStyles = makeStyles({
   formContainer: {
@@ -29,18 +27,17 @@ const useStyles = makeStyles({
 interface AddElectiveSuggestionDialogProps {
   open: boolean;
   toggleDialog: () => void;
+  handleAddElective: (id: string, name: string, link: string) => Promise<void>;
 }
-const AddElectiveSuggestionDialog: React.FC<AddElectiveSuggestionDialogProps> = ({ open, toggleDialog }) => {
+const AddElectiveSuggestionDialog: React.FC<AddElectiveSuggestionDialogProps> = ({
+  open,
+  toggleDialog,
+  handleAddElective,
+}) => {
   const classes = useStyles();
   const [id, setId] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [link, setLink] = useState<string>("");
-
-  const handleSubmit = async () => {
-    const firebaseToken = await firebaseAuth.getToken();
-    await apiClient.createElective(firebaseToken, { id, name, link });
-    toggleDialog();
-  };
 
   return (
     <Dialog open={open}>
@@ -59,7 +56,7 @@ const AddElectiveSuggestionDialog: React.FC<AddElectiveSuggestionDialogProps> = 
         <Button onClick={toggleDialog} color="primary">
           Cancel
         </Button>
-        <Button onClick={handleSubmit} color="primary">
+        <Button onClick={() => handleAddElective(id, name, link)} color="primary">
           Add Elective
         </Button>
       </DialogActions>

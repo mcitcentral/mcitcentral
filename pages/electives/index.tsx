@@ -31,6 +31,16 @@ const Electives: React.FC<ElectivesProps> = ({ initElectiveSuggestions }) => {
     } else setNotification({ type: "error", message: "There was an error with counting your vote." });
   };
 
+  const handleAddElective = async (id: string, name: string, link: string): Promise<void> => {
+    const firebaseToken = await firebaseAuth.getToken();
+    const response = await apiClient.createElective(firebaseToken, { id, name, link });
+    if (response.success) {
+      const { data } = response;
+      setElectiveSuggestions(data);
+      toggleAddElective();
+    } else setNotification({ type: "error", message: "There was an error with adding a new elective." });
+  };
+
   return (
     <Container maxWidth="lg">
       <Grid container style={{ marginBottom: 15 }}>
@@ -40,7 +50,11 @@ const Electives: React.FC<ElectivesProps> = ({ initElectiveSuggestions }) => {
           </Button>
         </Grid>
       </Grid>
-      <AddElectiveSuggestionDialog open={addElective} toggleDialog={toggleAddElective} />
+      <AddElectiveSuggestionDialog
+        open={addElective}
+        toggleDialog={toggleAddElective}
+        handleAddElective={handleAddElective}
+      />
       <ElectiveTable uid={userSettings?.user} electiveSuggestions={electiveSuggestions} handleVote={handleVote} />
     </Container>
   );

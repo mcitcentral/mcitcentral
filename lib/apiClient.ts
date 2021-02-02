@@ -43,7 +43,10 @@ const apiClient = {
       throw new Error(e.message);
     }
   },
-  createElective: async (firebaseToken: string, elective: Partial<ElectiveSuggestion>): Promise<SuccessResponse> => {
+  createElective: async (
+    firebaseToken: string,
+    elective: Partial<ElectiveSuggestion>
+  ): Promise<SuccessResponse<ElectiveSuggestionList>> => {
     try {
       const res = await axios.post("/api/electives/create", { firebaseToken, elective });
       return res.data;
