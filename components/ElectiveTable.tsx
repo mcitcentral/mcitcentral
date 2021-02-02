@@ -20,16 +20,8 @@ const useStyles = makeStyles({
   tableRow: {
     cursor: "pointer",
   },
-  topContainer: {
-    marginBottom: 25,
-    display: "flex",
-    alignItems: "flex-end",
-  },
   tableContainer: {
     overflow: "scroll",
-  },
-  voteButton: {
-    margin: 5,
   },
 });
 
@@ -56,11 +48,11 @@ const ElectiveTable: React.FC<ElectiveTableProps> = ({ uid, electiveSuggestions,
     .sort(({ voteTotal: a }, { voteTotal: b }) => b - a);
 
   return (
-    <Box>
+    <Box className={classes.tableContainer}>
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell style={{ width: 80 }}>ID</TableCell>
+            <TableCell style={{ minWidth: 80, width: 80 }}>ID</TableCell>
             <TableCell style={{ minWidth: 250 }}>Name</TableCell>
             <TableCell align="center" style={{ width: 50 }}>
               Link
@@ -93,7 +85,6 @@ const ElectiveTable: React.FC<ElectiveTableProps> = ({ uid, electiveSuggestions,
                   <Button
                     variant="contained"
                     color={votes[uid] ? "primary" : "default"}
-                    className={classes.voteButton}
                     onClick={() => handleVote(id, !votes[uid])}
                   >
                     <ArrowDropUpIcon />
