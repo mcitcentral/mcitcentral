@@ -80,9 +80,13 @@ const ElectiveTable: React.FC<ElectiveTableProps> = ({ uid, electiveSuggestions,
                 <TableCell>{id}</TableCell>
                 <TableCell>{name}</TableCell>
                 <TableCell align="center">
-                  <Link href={link} target="_blank">
-                    <LinkIcon />
-                  </Link>
+                  {link ? (
+                    <Link href={link} target="_blank" rel="noreferrer">
+                      <LinkIcon />
+                    </Link>
+                  ) : (
+                    <LinkIcon color="disabled" />
+                  )}
                 </TableCell>
                 <TableCell align="center">{voteTotal}</TableCell>
                 <TableCell align="center">
