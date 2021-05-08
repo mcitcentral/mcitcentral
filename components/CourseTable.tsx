@@ -15,6 +15,7 @@ import {
   FormGroup,
   FormControlLabel,
   Typography,
+  TableSortLabel,
 } from "@material-ui/core";
 
 import useToggle from "~/hooks/useToggle";
@@ -50,6 +51,8 @@ const CourseTable: React.FC<CourseTableProps> = ({ courses, editable = false }) 
   const [filterCoreCourses, setFilterCoreCourses] = useState<boolean>(true);
   const [filterElectives, setFilterElectives] = useState<boolean>(true);
   const [filterHasReviews, setFilterHasReviews] = useState<boolean>(false);
+  const [sortKey, setSortKey] = useState<string>("id");
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
 
   const filteredCourses = Object.values(courses).filter((course) => {
     if (
@@ -60,6 +63,26 @@ const CourseTable: React.FC<CourseTableProps> = ({ courses, editable = false }) 
     )
       return course;
   });
+
+  const sortedCourses = filteredCourses.sort((courseA, courseB) => {
+    if (["avgDifficulty", "avgRating", "avgWorkload", "reviewCount"].includes(sortKey)) {
+      if (courseA[sortKey] > courseB[sortKey]) return sortDirection === "desc" ? -1 : 1;
+      if (courseA[sortKey] < courseB[sortKey]) return sortDirection === "desc" ? 1 : -1;
+    } else {
+      if (courseA[sortKey] > courseB[sortKey]) return sortDirection === "desc" ? 1 : -1;
+      if (courseA[sortKey] < courseB[sortKey]) return sortDirection === "desc" ? -1 : 1;
+    }
+    return 0;
+  });
+
+  const handleSort = (_sortKey: string) => {
+    if (sortKey === _sortKey) {
+      if (sortDirection === "asc") setSortDirection("desc");
+      else setSortDirection("asc");
+    } else {
+      setSortKey(_sortKey);
+    }
+  };
 
   return (
     <>
@@ -101,16 +124,40 @@ const CourseTable: React.FC<CourseTableProps> = ({ courses, editable = false }) 
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
-                <TableCell style={{ minWidth: 80 }}>ID</TableCell>
-                <TableCell style={{ minWidth: 250 }}>Name</TableCell>
-                <TableCell align="center">Reviews</TableCell>
-                <TableCell align="center">Difficulty (1-5)</TableCell>
-                <TableCell align="center">Workload (hrs/wk)</TableCell>
-                <TableCell align="center">Rating (1-5)</TableCell>
+                <TableCell style={{ minWidth: 80 }}>
+                  <TableSortLabel direction={sortDirection} onClick={() => handleSort("id")}>
+                    ID
+                  </TableSortLabel>
+                </TableCell>
+                <TableCell style={{ minWidth: 250 }}>
+                  <TableSortLabel direction={sortDirection} onClick={() => handleSort("name")}>
+                    Name
+                  </TableSortLabel>
+                </TableCell>
+                <TableCell align="center">
+                  <TableSortLabel direction={sortDirection} onClick={() => handleSort("reviewCount")}>
+                    Reviews
+                  </TableSortLabel>
+                </TableCell>
+                <TableCell align="center">
+                  <TableSortLabel direction={sortDirection} onClick={() => handleSort("avgDifficulty")}>
+                    Difficulty (1-5)
+                  </TableSortLabel>
+                </TableCell>
+                <TableCell align="center">
+                  <TableSortLabel direction={sortDirection} onClick={() => handleSort("avgWorkload")}>
+                    Workload (hrs/wk)
+                  </TableSortLabel>
+                </TableCell>
+                <TableCell align="center">
+                  <TableSortLabel direction={sortDirection} onClick={() => handleSort("avgRating")}>
+                    Rating (1-5)
+                  </TableSortLabel>
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {filteredCourses.map(({ id, name, reviewCount, avgDifficulty, avgWorkload, avgRating }) => {
+              {sortedCourses.map(({ id, name, reviewCount, avgDifficulty, avgWorkload, avgRating }) => {
                 return (
                   <Link key={id} href={`/courses/${id}`}>
                     <TableRow hover className={classes.tableRow}>
