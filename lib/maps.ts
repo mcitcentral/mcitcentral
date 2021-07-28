@@ -15,25 +15,25 @@ export const Rating = {
 };
 
 // Determine season based on a date
-export function getSemester(date) {
+export function getSemester(date: Date): string {
   const year_str = String(date.getFullYear());
   const month = date.getMonth();
   if (month < 6) {
-    return "Spring" + year_str;
+    return "Spring " + year_str;
   } else if (month < 9) {
-    return "Summer" + year_str;
+    return "Summer " + year_str;
   } else {
-    return "Fall" + year_str;
+    return "Fall " + year_str;
   }
 }
 
 // Generate an array of Semesters using getSeason and a start_date and end_date
-export function getSemesters(start_date, end_date) {
+export function getSemesters(start_date: Date, end_date: Date): string[] {
   
   start_date = new Date(start_date.getFullYear(), start_date.getMonth(), 1);
   end_date = new Date(end_date.getFullYear(), end_date.getMonth(), 1);
   
-  let semesters = new Set;
+  const semesters = new Set<string>();
   let current_date = start_date;
   
   while (current_date <= end_date) {
@@ -44,4 +44,3 @@ export function getSemesters(start_date, end_date) {
 }
 
 export const Semesters = getSemesters(new Date(2019, 0, 1), new Date());
-
