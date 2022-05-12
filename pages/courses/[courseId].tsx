@@ -47,7 +47,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const courseReviews = await getCourseReviews(courseId);
   return {
     props: { course, courseReviews },
-    revalidate: 1,
+    revalidate: 3600,
   };
 };
 

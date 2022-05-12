@@ -23,7 +23,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const courseReviews = await getAllCourseReviews();
   return {
     props: { courses, courseReviews },
-    revalidate: 1,
+    revalidate: 3600,
   };
 };
 
