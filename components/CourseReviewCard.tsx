@@ -47,6 +47,9 @@ const useStyles = makeStyles((theme) => ({
       marginRight: 0,
     },
   },
+  body: {
+    whiteSpace: "pre-line",
+  },
   chipDarkGreen: {
     color: "#1b5e20",
     borderColor: "#1b5e20",
@@ -140,7 +143,7 @@ const CourseReviewCard: React.FC<CourseReviewCardProps> = ({
           }
         />
         <CardContent>
-          <Typography>{courseReview.body}</Typography>
+          <Typography className={classes.body}>{courseReview.body}</Typography>
         </CardContent>
         <CardActions className={classes.cardActions}>
           <Chip label={courseReview.semester} variant="outlined" className={classes.semester} />

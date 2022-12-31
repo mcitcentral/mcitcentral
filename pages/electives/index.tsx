@@ -44,7 +44,7 @@ const Electives: React.FC<ElectivesProps> = ({ initElectiveSuggestions }) => {
   return (
     <Container maxWidth="lg">
       <Grid container style={{ marginBottom: 15 }}>
-        <Grid item container xs={12} justify="flex-end">
+        <Grid item container xs={12} justifyContent="flex-end">
           <Button variant="contained" color="primary" onClick={toggleAddElective} style={{ marginLeft: 25 }}>
             + Add Elective
           </Button>

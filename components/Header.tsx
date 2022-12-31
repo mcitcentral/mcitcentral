@@ -49,10 +49,10 @@ const Header: React.FC = () => {
   return (
     <AppBar>
       <Toolbar>
-        <Grid container direction="row" justify="space-between" alignItems="center">
+        <Grid container direction="row" justifyContent="space-between" alignItems="center">
           <Grid container item direction="row" xs={10}>
             <Link href="/">
-              <Box display="flex" className={classes.logoContainer}>
+              <Box className={classes.logoContainer}>
                 <img className={classes.logo} src="/images/uPennLogo.svg" alt="UPenn Logo" />
                 <Typography variant="h6" className={classes.title}>
                   MCIT Central
@@ -73,7 +73,7 @@ const Header: React.FC = () => {
               </>
             )}
           </Grid>
-          <Grid container item direction="row" xs={2} justify="flex-end">
+          <Grid container item direction="row" xs={2} justifyContent="flex-end">
             {user ? (
               <>
                 <Button onClick={(e) => handleOpenMenu(e)}>
