@@ -107,7 +107,7 @@ const CourseTable: React.FC<CourseTableProps> = ({ courses, editable = false }) 
               />
             </FormGroup>
           </Grid>
-          <Grid item container xs={6} justify="flex-end">
+          <Grid item container xs={6} justifyContent="flex-end">
             <TextField
               value={filterString}
               onChange={(e) => setFilterString(e.target.value)}
