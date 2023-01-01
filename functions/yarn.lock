@@ -719,10 +719,10 @@ firebase-admin@8.13.0:
     "@google-cloud/firestore" "^3.0.0"
     "@google-cloud/storage" "^4.1.2"
 
-firebase-functions-test@0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/firebase-functions-test/-/firebase-functions-test-0.2.3.tgz#90d6da662d604ed013a3735c6cdba5984e0d57ea"
-  integrity sha512-zYX0QTm53wCazuej7O0xqbHl90r/v1PTXt/hwa0jo1YF8nDM+iBKnLDlkIoW66MDd0R6aGg4BvKzTTdJpvigUA==
+firebase-functions-test@0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/firebase-functions-test/-/firebase-functions-test-0.3.1.tgz#34cd02f2527e17808cf0fd33efa1d0164f336d74"
+  integrity sha512-xqzzbW+qzG7uT4XQpwbOhxq3LwsJB0NvYs5+Du0vPGwI7viP9KKc8BvxnexTIhxzRZQf7ZJjVbhRBlavK3JA8w==
   dependencies:
     "@types/lodash" "^4.14.104"
     lodash "^4.17.5"
@@ -1651,10 +1651,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@3.9.7:
-  version "3.9.7"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.7.tgz#98d600a5ebdc38f40cb277522f12dc800e9e25fa"
-  integrity sha512-BLbiRkiBzAwsjut4x/dsibSTB6yWpwT5qWmC2OfuCg3GgVQCSgMs4vEctYPhsaGtd0AeuuHMkjZ2h2WG8MSzRw==
+typescript@4.3.5:
+  version "4.3.5"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.3.5.tgz#4d1c37cc16e893973c45a06886b7113234f119f4"
+  integrity sha512-DqQgihaQ9cUrskJo9kIyW/+g0Vxsk8cDtZ52a3NGh0YNTfpUSArXSohyUGnvbPazEPLu398C0UxmKSOrPumUzA==
 
 unique-string@^2.0.0:
   version "2.0.0"
