@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import Link from "next/link";
 import {
   Box,
@@ -52,7 +52,15 @@ const CourseTable: React.FC<CourseTableProps> = ({ courses, editable = false }) 
   const [filterElectives, setFilterElectives] = useState<boolean>(true);
   const [filterHasReviews, setFilterHasReviews] = useState<boolean>(false);
   const [sortKey, setSortKey] = useState<string>("id");
-  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
+  const [sortDirection, setSortDirection] = useState<string>( "desc");
+
+
+  // Wait for component to mount to run code in the browser
+  useEffect(() => {
+    setSortKey(window.localStorage.getItem("sortKey") || "id")
+    setSortDirection(window.localStorage.getItem("sortDirection") || "desc")
+  }, [])
+
 
   const filteredCourses = Object.values(courses).filter((course) => {
     if (
@@ -76,9 +84,17 @@ const CourseTable: React.FC<CourseTableProps> = ({ courses, editable = false }) 
   });
 
   const handleSort = (_sortKey: string) => {
+    localStorage.setItem("sortKey", _sortKey)
     if (sortKey === _sortKey) {
-      if (sortDirection === "asc") setSortDirection("desc");
-      else setSortDirection("asc");
+
+      if (sortDirection === "asc"){
+        localStorage.setItem("sortDirection", "desc")
+        setSortDirection("desc")
+      } else {
+        localStorage.setItem("sortDirection", "asc")
+        setSortDirection("asc")
+      }
+
     } else {
       setSortKey(_sortKey);
     }

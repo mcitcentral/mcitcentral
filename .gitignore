@@ -36,3 +36,5 @@ service-key-prod.json
 
 # vercel
 .vercel
+
+.idea
